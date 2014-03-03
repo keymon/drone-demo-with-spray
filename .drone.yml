@@ -1,0 +1,14 @@
+image: scala2.10.3
+services: 
+  - mysql
+env:
+  - GOROOT=test
+  - GOPATH=/var/cache/drone
+  - PATH=$GOPATH/bin:$GOPATH/bin:$PATH
+script:
+  - env
+  - false
+notify:
+  email:
+    recipients:
+      - keymon@gmail.com
