@@ -1,14 +1,21 @@
 image: scala2.10.3
-services: 
-  - mysql
+#services: 
+#  - mysql
 env:
-  - GOROOT=test
-  - GOPATH=/var/cache/drone
-  - PATH=$GOPATH/bin:$GOPATH/bin:$PATH
 script:
   - env
-  - false
+  - pwd
+  - ls $DRONE_BUILD_DIR/ -l 
+  - ls $DRONE_BUILD_DIR/ -ld 
+  - ls $DRONE_BUILD_DIR/.ivy2 -ld 
+  - id
+  - sbt -ivy $DRONE_BUILD_DIR/.ivy2 -mem 256 assembly 
 notify:
   email:
     recipients:
       - keymon@gmail.com
+cache:
+  - target
+  - project/target
+  - project/project/target
+  - .ivy2
